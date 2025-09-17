@@ -9,3 +9,26 @@ Project Segments
 5. Reports & Exporting – Generating reports in CSV (and optionally PDF), including student details, grades, final scores, and GPAs.
 To ensure steady progress, we also adopted a strategy of staying one day ahead of schedule. This buffer allows us to handle unexpected challenges, ensure smooth integration of different parts, and stay aligned with the project deadline.
  
+# Student Gradebook Manager (Group 03)
+
+Simple tool for teachers to add students, record scores, handle weighted assignments, and compute final grades + class average. Exports per-student CSV reports.
+
+## ✨ MVP Scope
+- Add students and assignments
+- Enter grades
+- Compute each student’s final grade (weighted)
+- Compute class average
+- Export per-student CSV
+
+## 🧱 Project Structure
+├── .github/workflows/ci.yml
+├── data/
+├── src/
+│ └── init.py
+├── tests/
+│ └── test_core.py
+├── .gitignore
+├── Pipfile
+├── Pipfile.lock
+└── README.md
+
