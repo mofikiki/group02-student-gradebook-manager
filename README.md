@@ -1,4 +1,9 @@
-Development Plan
+# Student Gradebook Manager
+
+## Project Summary
+A Python application to manage students, assignments, record grades, compute final grades, calculate class averages, and export CSV reports.
+
+## Development Plan
 As Group 2, our development plan began with a collective review of the project requirements. Each member was instructed to carefully study the specifications, after which we gathered and discussed different opinions on how best to approach the project. This ensured that every group member had a voice in shaping the development process and encouraged full participation.
 Following the review, we agreed that the next step would be to divide the project into five major segments, covering all the core functionalities and deliverables. With an average of 4 active members out of 7 total, our initial strategy was to assign at least two members to each segment. This approach not only distributes the workload evenly but also provides backup and collaboration within each segment.
 Project Segments
