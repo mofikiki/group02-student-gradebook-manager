@@ -13,10 +13,6 @@ Project Segments
 4. GUI with Tkinter – User interface for displaying students and assignments, forms to add grades, and a summary panel for class averages.
 5. Reports & Exporting – Generating reports in CSV (and optionally PDF), including student details, grades, final scores, and GPAs.
 To ensure steady progress, we also adopted a strategy of staying one day ahead of schedule. This buffer allows us to handle unexpected challenges, ensure smooth integration of different parts, and stay aligned with the project deadline.
- 
-# Student Gradebook Manager (Group 02)
-
-Simple tool for teachers to add students, record scores, handle weighted assignments, and compute final grades + class average. Exports per-student CSV reports.
 
 ## ✨ MVP Scope
 - Add students and assignments
