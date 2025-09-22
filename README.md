@@ -208,17 +208,8 @@ A one‑day integration buffer was kept to absorb risks and align deliverables.
 ---
 
 ## 🙌 Credits
-
-**Project Team (Group 2)**  
-- Project Coordination & Docs — _[Add Name(s)]_  
-- Core Classes & Data Models — _[Add Name(s)]_  
-- Grade/GPA Logic & Validation — _[Add Name(s)]_  
-- CRUD & Persistence — _[Add Name(s)]_  
-- Flask UI/UX (Templates & CSS) — _[Add Name(s)]_  
-- QA, Testing & CI — _[Add Name(s)]_
-
 **Open‑Source Acknowledgements**  
-Flask, Werkzeug, Jinja2, Click, itsdangerous, MarkupSafe, blinker, pytest, pluggy, iniconfig, packaging, colorama, pygments.
+Flask, Werkzeug, Jinja2, Click, itsdangerous, MarkupSafe, blinker, pytest, pluggy, iniconfig, packaging, colorama, pygments,chatgpt.
 
 ---
 
