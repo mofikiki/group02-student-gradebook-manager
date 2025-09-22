@@ -1,0 +1,38 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "johnson"
+    },
+    {
+      "id": 2,
+      "name": "Fouad"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "title": "python",
+      "weight": 2.0,
+      "type": "exam"
+    },
+    {
+      "id": 2,
+      "title": "@",
+      "weight": 1.0,
+      "type": "exam"
+    }
+  ],
+  "grades": [
+    {
+      "student_id": 1,
+      "assignment_id": 1,
+      "score": 90.0
+    },
+    {
+      "student_id": 2,
+      "assignment_id": 1,
+      "score": 89.0
+    }
+  ]
+}

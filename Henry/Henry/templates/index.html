@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Grade Dashboard</h1>
+
+{% if can_edit %}
+<section class="form-card">
+  <h2>Add Grade</h2>
+  <form action="{{ url_for('add_grade') }}" method="post">
+    <div class="row">
+      <label for="student_id">Student</label>
+      <select id="student_id" name="student_id" required>
+        <option value="">-- Choose Student --</option>
+        {% for s in students %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row">
+      <label for="assignment_id">Assignment</label>
+      <select id="assignment_id" name="assignment_id" required>
+        <option value="">-- Choose Assignment --</option>
+        {% for a in assignments %}
+        <option value="{{ a.id }}">{{ a.title }} ({{ a.type|default('exam')|title }}, Weight: {{ a.weight }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row">
+      <label for="score">Score (0-100)</label>
+      <input id="score" type="number" name="score" min="0" max="100" step="0.01" placeholder="e.g. 85.5" required />
+    </div>
+    <div class="row">
+      <button type="submit">Record Grade</button>
+    </div>
+  </form>
+</section>
+{% else %}
+<div class="viewer-info-card">
+  <h2>Grade Management</h2>
+  <p>You are viewing grades in read-only mode. Switch to Teacher role to add or modify grades.</p>
+</div>
+{% endif %}
+
+<section class="table-card">
+  <h2>Student Summary</h2>
+  {% if students_with_summary %}
+  <div class="summary-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Final Grade (%)</th>
+          <th>GPA</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for s in students_with_summary %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>
+            {% if s.avg is not none %}
+              <span class="grade-score {{ 'grade-a' if s.avg >= 90 else 'grade-b' if s.avg >= 80 else 'grade-c' if s.avg >= 70 else 'grade-d' if s.avg >= 60 else 'grade-f' }}">
+                {{ '%.2f'|format(s.avg) }}%
+              </span>
+            {% else %}
+              <span class="no-grade">No grades</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if s.gpa is not none %}
+              <span class="gpa-score">{{ '%.2f'|format(s.gpa) }}</span>
+            {% else %}
+              <span class="no-grade">N/A</span>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ url_for('export_csv', student_id=s.id) }}" class="export-link">
+              Export CSV
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="class-statistics">
+    <h3>Class Statistics</h3>
+    <div class="stat-item">
+      <span class="stat-label">Class Average:</span>
+      <span class="stat-value">
+        {% if class_avg is not none %}
+          {{ '%.2f'|format(class_avg) }}%
+        {% else %}
+          No data available
+        {% endif %}
+      </span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Total Students:</span>
+      <span class="stat-value">{{ students|length }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Total Assignments:</span>
+      <span class="stat-value">{{ assignments|length }}</span>
+    </div>
+  </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No student data available.</p>
+      <p><small>Add students and assignments to get started.</small></p>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}
