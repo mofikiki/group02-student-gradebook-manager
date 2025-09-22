@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Students</h1>
+
+{% if can_edit %}
+<section class="form-card">
+  <h2>Add New Student</h2>
+  <form method="post">
+    <div class="row">
+      <label for="name">Student Name</label>
+      <input id="name" name="name" type="text" placeholder="e.g. Fouad Musa" required />
+    </div>
+    <div class="row">
+      <button type="submit">Add Student</button>
+    </div>
+    <div class="row">
+      <label for="student_id">Student ID (optional)</label>
+      <input id="student_id" name="student_id" type="number" min="1" placeholder="e.g. 182" />
+      <small style="color: #666; font-size: 0.85em; margin-top: 4px;">
+        💡 enter valid ID
+      </small>
+    </div>
+    
+  </form>
+</section>
+{% else %}
+<div class="viewer-info-card">
+  <h2>Student Management</h2>
+  <p>You are viewing students in read-only mode. Switch to Teacher role to add new students.</p>
+</div>
+{% endif %}
+
+<section class="table-card">
+  <h2>All Students ({{ students|length }})</h2>
+  {% if students %}
+  <div class="students-grid">
+    {% for s in students %}
+      <div class="student-item">
+        <div class="student-header">
+          <span class="student-id">#{{ s.id }}</span>
+        </div>
+        <h3 class="student-name">{{ s.name }}</h3>
+        <div class="student-actions">
+          <a href="{{ url_for('export_csv', student_id=s.id) }}" class="export-btn">
+            📄 Export Report
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No students enrolled yet.</p>
+      {% if can_edit %}
+        <p><small>Use the form above to add your first student.</small></p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

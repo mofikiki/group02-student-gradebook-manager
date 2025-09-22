@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Student Gradebook Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>📚 Gradebook</h2>
+      
+      <!-- Role switcher -->
+      <div class="role-switcher">
+        <p><strong>Current Role:</strong> {{ current_role|title }}</p>
+        <div class="role-buttons">
+          <a href="{{ url_for('switch_role', role_name='teacher') }}" 
+             class="role-btn {% if current_role == 'teacher' %}active{% endif %}">
+            👩‍🏫 Teacher
+          </a>
+          <a href="{{ url_for('switch_role', role_name='viewer') }}" 
+             class="role-btn {% if current_role == 'viewer' %}active{% endif %}">
+            👁️ Viewer
+          </a>
+        </div>
+      </div>
+      
+      <nav>
+        <a href="{{ url_for('index') }}" class="nav-link">📊 Grades</a>
+        <a href="{{ url_for('students') }}" class="nav-link">👥 Students</a>
+        <a href="{{ url_for('assignments') }}" class="nav-link">📝 Assignments</a>
+      </nav>
+      
+      {% if not can_edit %}
+      <div class="viewer-notice">
+        <p>📖 <strong>Read-Only Mode</strong><br>
+        <small>Switch to Teacher role to make changes</small></p>
+      </div>
+      {% endif %}
+      
+
+    </aside>
+    <main class="main">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="messages">
+            {% for category, msg in messages %}
+              <div class="msg {{ category }}">{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      
+      <!-- Back button for sub-pages -->
+      {% if request.endpoint != 'index' %}
+      <div class="back-navigation">
+        <a href="{{ url_for('index') }}" class="back-btn">← Back to Dashboard</a>
+      </div>
+      {% endif %}
+      
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>
