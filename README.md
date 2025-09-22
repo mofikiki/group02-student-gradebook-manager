@@ -94,20 +94,6 @@ $env:FLASK_DEBUG="1"
 pipenv run flask run
 ```
 
-### Option B — Using `venv` and `pip`
-
-```bash
-# Create and activate a venv (example for macOS/Linux)
-python3 -m venv .venv
-source .venv/bin/activate
-
-# Install from Pipfile.lock equivalents (minimal set)
-pip install Flask==3.1.2 pytest==8.4.2
-
-# Run
-python -m src.app
-```
-
 ### Open the App
 ```
 http://127.0.0.1:5000
