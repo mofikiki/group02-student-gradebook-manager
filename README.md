@@ -61,7 +61,6 @@ group02_studentgradebook/
 
 - **Python** 3.13 (as pinned in `Pipfile`; 3.12+ can work if you adjust `Pipfile` and re‑lock)
 - **pipenv** (recommended) — `pip install pipenv`  
-  *(Alternative: a virtualenv + `pip install -r requirements.txt` if you generate one)*
 
 ---
 
